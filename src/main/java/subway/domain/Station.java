@@ -1,5 +1,7 @@
 package subway.domain;
 
+import java.util.Objects;
+
 public class Station {
     private String name;
 
@@ -11,5 +13,16 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Station station)) {
+            return false;
+        }
+        return Objects.equals(name, station.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
+    }
 }
