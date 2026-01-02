@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.constant.ErrorMessage;
 import subway.domain.Station;
 
 public class StationRepository {
@@ -23,5 +24,12 @@ public class StationRepository {
 
     public static void deleteAll() {
         stations.clear();
+    }
+
+    public static Station findByName(String name) {
+        return stations.stream()
+                .filter(station -> Objects.equals(station.getName(), name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_FOUND_STATION.getMessage()));
     }
 }

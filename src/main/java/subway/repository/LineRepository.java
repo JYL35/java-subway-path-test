@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.constant.ErrorMessage;
 import subway.domain.Line;
 
 public class LineRepository {
@@ -23,5 +24,12 @@ public class LineRepository {
 
     public static void deleteAll() {
         lines.clear();
+    }
+
+    public static Line findByName(String name) {
+        return lines.stream()
+                .filter(line -> Objects.equals(line.getName(), name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_FOUND_LINE.getMessage()));
     }
 }
