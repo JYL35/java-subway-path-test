@@ -18,7 +18,7 @@ public class Section {
         return upStation;
     }
 
-    public Station downStation() {
+    public Station getDownStation() {
         return downStation;
     }
 
