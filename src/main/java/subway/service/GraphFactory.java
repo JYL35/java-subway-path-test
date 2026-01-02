@@ -8,6 +8,7 @@ import subway.repository.SectionRepository;
 import subway.repository.StationRepository;
 
 public class GraphFactory {
+    private static final String DISTANCE_TYPE = "1";
 
     public Graph<Station, Section> createGraph(String pathType) {
         Graph<Station, Section> graph = new WeightedMultigraph<>(Section.class);
@@ -35,7 +36,7 @@ public class GraphFactory {
     }
 
     private int matchType(Section section, String pathType) {
-        if (pathType.equals("distance")) {
+        if (pathType.equals(DISTANCE_TYPE)) {
             return section.getDistance();
         }
         return section.getTime();

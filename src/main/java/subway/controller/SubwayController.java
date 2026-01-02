@@ -1,15 +1,19 @@
 package subway.controller;
 
+import subway.dto.PathResult;
+import subway.service.PathService;
 import subway.util.Validator;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 public class SubwayController {
 
+    private final PathService pathService;
     private final InputView inputView;
     private final OutputView outputView;
 
-    public SubwayController(InputView inputView, OutputView outputView) {
+    public SubwayController(PathService pathService, InputView inputView, OutputView outputView) {
+        this.pathService = pathService;
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -34,8 +38,8 @@ public class SubwayController {
             String start = inputView.readStartStation();
             String last = inputView.readLastStation();
 
-            // 1번이냐, 2번이냐에 따라 다른 메소드 시행 -> 조회 결과 출력 후 메소드 종료
-
+            PathResult pathResult = pathService.findShortestDistance(func2, start, last);
+            outputView.printPathResult(pathResult);
         } catch (RuntimeException e) {
             outputView.printError(e);
             startProgram();
