@@ -16,6 +16,12 @@ public class SubwayInitializer {
         initSection();
     }
 
+    public static void deleteSetting() {
+        LineRepository.deleteAll();
+        SectionRepository.deleteAll();
+        StationRepository.deleteAll();
+    }
+
     private static void initStation() {
         List<String> stationNames = List.of(
                 "교대역", "강남역", "역삼역",

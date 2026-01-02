@@ -20,7 +20,12 @@ public class InputView {
     }
 
     private String userInput(String message) {
+        printNewLine();
         System.out.println(message);
         return Console.readLine();
+    }
+
+    private static void printNewLine() {
+        System.out.print(System.lineSeparator());
     }
 }

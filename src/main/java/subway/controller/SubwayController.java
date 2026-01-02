@@ -20,11 +20,15 @@ public class SubwayController {
 
     public void start() {
         while (true) {
-            outputView.printMainScreen();
-            String func1 = inputView.readFunction();
-            Validator.validateFunc1(func1);
-            if (func1.equals("Q")) break;
-            startProgram();
+            try {
+                outputView.printMainScreen();
+                String func1 = inputView.readFunction();
+                Validator.validateFunc1(func1);
+                if (func1.equals("Q")) break;
+                startProgram();
+            } catch (RuntimeException e) {
+                outputView.printError(e);
+            }
         }
     }
 
